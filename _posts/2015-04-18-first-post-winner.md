@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Christopher Kodama Launches Site"
+title: "Site Launch"
 date: 2015-04-18
 ---
 
