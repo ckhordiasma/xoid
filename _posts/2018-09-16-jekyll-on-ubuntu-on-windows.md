@@ -25,22 +25,24 @@ The first ruby instruction was to update the update repositories. `sudo apt-get 
 
 Next I had to add a repository with a special ruby build specifically for Windows with Ubuntu, and then install that version of ruby. Note that what was actually installed was ruby and its developmental version. I'm not sure what the `build-essential` and `dh-autoreconf` mean.
 
-```terminal
+``` shell
 sudo apt-add-repository ppa:brightbox/ruby-ng
 sudo apt-get update
 sudo apt-get install ruby2.5 ruby2.5-dev build-essential dh-autoreconf
 ```
+
 Next is updating ruby gems and installation of jekyll and bundler (the last two commands there are checking jekyll version number and making so that bundle doesn't prompt for sudo). 
 
 You may be wondering what a ruby gem is. It seems to just be a fancy name for a ruby application or library. Jekyll is a ruby gem (application), and so is bundler. Bundler is a ruby gem which tracks the version numbers of dependency gems when you are developing ruby project. 
 
-```terminal
+``` shell
 sudo gem update
 sudo gem install jekyll bundler
 jekyll -v
 bundle config path vendor/bundle
 ```
-All right, so after I did all this, I could CD into my website folder and run `jekyll serve` and see my website! hooray. 
+All right, so after I did all this, I could CD into my website folder 
+and run `jekyll serve` and see my website! hooray. 
 HOWEVER, the jekyll website says that the proper way to run jekyll is actually `bundle exec jekyll serve` to make sure all dependencies are OK. When I tried that, I got the following error: `Could not locate Gemfile or .bundle/ directory`. I next tried `bundle install` and got the error `Could not locate Gemfile`. So I need a gemfile. Turns out `bundle init` will generate a gemfile for me. I then tried `bundle install; bundle exec jekyll serve` again and got the error 
 ```
 bundler: failed to load command: jekyll (/usr/local/bin/jekyll)
@@ -64,3 +66,24 @@ bundle
 
 ok! I think I am done for now. 
 
+(Edit) One more thing - code syntax highlighting. In markdown, I can create code blocks using backtick (``) syntax. Rouge is a ruby gem (extension) that can easily make it so you can highlight text in markdown and other things.
+I set up my config jekyll file to use rouge (and kramdown for markdown syntax), and it currently looks like:
+
+``` yaml
+name: Christopher Kodama's Website
+markdown: kramdown
+highlighter: rouge
+```
+
+I had already installed the rouge gem, but if I hadn't, I would have used `gem install rouge`. Rouge has some pre-installed syntax themes, so I just applied some of those to my website:
+
+```shell
+rougify style thankful_eyes > ./css/syntax.css
+```
+
+And made corresponding changes to my default jekyll layout.
+
+```html
+<!-- link to syntax highlighting stylesheet -->
+<link rel="stylesheet" type="text/css" href="/css/syntax.css">
+```

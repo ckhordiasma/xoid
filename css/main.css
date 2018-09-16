@@ -42,7 +42,7 @@ ul.posts li {
     list-style: none;
 }
 
-div.highlighter-rouge code {
-    color: #333;
-    font-size: 1.5em;
+div.highlight code {
+    
+    font-size: 1.3em;
 }
