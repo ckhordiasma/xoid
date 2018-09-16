@@ -3,3 +3,4 @@ _site/
 #ignoring bundler generated stuff
 vendor/
 bundle
+ckhordiasma.github.io.geany
