@@ -3,19 +3,19 @@ layout: post
 title: "Jekyll on Ubuntu on Windows"
 date: 2018-09-16
 ---
-Doing more work with Ubuntu on windows. I accidentally overwrote my Ubuntu on Windows installation, deleting all of my linux files! Oh well. Since I'm starting from scratch, I am working on getting things back to working again, starting with Jekyll and Github/Gitlab.
+Doing more work with Ubuntu on windows. I accidentally overwrote my Ubuntu on Windows installation, deleting all of my Linux files! Oh well. Since I'm starting from scratch, I am working on getting things back to working again, starting with Jekyll and GitHub/Gitlab.
 
-Now, there are two ways of using Jekyll with Github. On Github, you can just have the source Jekyll files (the *.md files, the _layouts and _posts directories, and NOT the _site folder), commit/push those onto the Github repo, and github's servers will worry about doing all the `jekyll serve` stuff that needs to be done. 
+Now, there are two ways of using Jekyll with GitHub. On GitHub, you can just have the source Jekyll files (the *.md files, the _layouts and _posts directories, and NOT the _site folder), commit/push those onto the GitHub repo, and GitHub's servers will worry about doing all the `jekyll serve` stuff that needs to be done. 
 
-This is very convenient. However, if you want to be able to use any special Jekyll plugins, you will only be able to do so if Github's server version of Jekyll has those plugins! So in terms of plugin functionality, you are at the mercy of whatever Github has.
+This is very convenient. However, if you want to be able to use any special Jekyll plugins, you will only be able to do so if GitHub's server version of Jekyll has those plugins! So in terms of plugin functionality, you are at the mercy of whatever GitHub has.
 
-Gitlab is a little different. They have this thing called Gitlab CI (gitlab continuous integration) which basically allows you to tell the server to run commands after each commit onto the hosted git repository. So it is possible not only to just post Jekyll source code onto Gitlab, but you can also make sure the correct plugins are installed (I think).
+Gitlab is a little different. They have this thing called Gitlab CI (Gitlab continuous integration) which basically allows you to tell the server to run commands after each commit onto the hosted git repository. So it is possible not only to just post Jekyll source code onto Gitlab, but you can also make sure the correct plugins are installed (I think).
 
-Here are the links I looked at: [gitlab documentation](https://docs.gitlab.com/ee/user/project/pages/getting_started_part_four.html), [some guy's blog](https://www.chenhuijing.com/blog/hosting-static-site-gitlab-pages/)
+Here are the links I looked at: [Gitlab documentation](https://docs.gitlab.com/ee/user/project/pages/getting_started_part_four.html), [some guy's blog](https://www.chenhuijing.com/blog/hosting-static-site-gitlab-pages/)
 
-The other way of using Jekyll with Github/Gitlab is to use jekyll locally to generate the static site, and then push those files onto Github/Gitlab. At this point, you are just basically using Github/Gitlab as a site hosting service, not as a version control system; however, it is a lot simpler and easier to use.
+The other way of using Jekyll with GitHub/Gitlab is to use jekyll locally to generate the static site, and then push those files onto GitHub/Gitlab. At this point, you are just basically using GitHub/Gitlab as a site hosting service, not as a version control system; however, it is a lot simpler and easier to use.
 
-OK, so with that background information, it's clear that with either way, it is useful and/or necessary to have Jekyll isntalled on my computer, and the main purpose of this post is to document what I went through to install Jekyll (in case I need to install it again in the future).
+OK, so with that background information, it's clear that with either way, it is useful and/or necessary to have Jekyll installed on my computer, and the main purpose of this post is to document what I went through to install Jekyll (in case I need to install it again in the future).
 
 I am following the trusty instructions [here](https://jekyllrb.com/docs/installation/windows/#installation-via-bash-on-windows-10) in order to install Jekyll on Windows w/ Ubuntu. I am going to go through every execution in the instructions, as well as any additional execution I needed to do. 
 
@@ -51,9 +51,9 @@ Gem::Exception: can't find executable jekyll for gem jekyll. jekyll is not curre
 ``` 
 Ok, that makes it look like I need to include jekyll in my gemfile. I added `gem 'jekyll'` near the bottom of my Gemfile file and tried serving again. This worked! Now I can see my website at 127.0.0.1:4000 .
 
-Now going back to the two different types of using Jekyll with Git. I currently use Github, and I don't have any fancy jekyll plugins or anything. Therefore, I am going to just upload my source Jekyll code into my Github repo and let Github worry about generating my site for me. For now.
+Now going back to the two different types of using Jekyll with Git. I currently use GitHub, and I don't have any fancy jekyll plugins or anything. Therefore, I am going to just upload my source Jekyll code into my GitHub repo and let GitHub worry about generating my site for me. For now.
 
-So in doing this, I need to update my `.gitignore` file to make sure extraneous jekyll/bundler stuff doesn't get added to my github repository. I also added `.sass-cache` in there in case I do sass stuff later. Here is my `.gitignore` file now:
+So in doing this, I need to update my `.gitignore` file to make sure extraneous jekyll/bundler stuff doesn't get added to my GitHub repository. I also added `.sass-cache` in there in case I do sass stuff later. Here is my `.gitignore` file now:
 ```
 _site/
 .sass-cache
