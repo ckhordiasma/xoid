@@ -36,11 +36,15 @@ allprojects {
 }
 ```
 
-I did not know what gradle was prior to this project, so I did some blind googling around.. From what I understand, gradle doesn't know what to do until it looks through links referenced in the repositories{} block. Whatever version of gradle I needed wasn't included in the `jcenter()` repository, so I had to add the `google()` repo in both repository blocks and the errors went away.
+I did not know what gradle was prior to this project, so I did some blind googling around.. From what I understand, gradle doesn't know what to do until it looks through links referenced in the `repositories{}` block. Whatever version of gradle I needed wasn't included in the `jcenter()` repository, so I had to add the `google()` repo in both repository blocks and the errors went away.
 
-The next error I got was `Minimum supported Gradle version is 4.10.1. Current version is 4.8.`
+The next error I got was: 
 
-This error include a "refactor" (i.e. automagically fix) option that I could click to fix it. What it did was go into the `gradle-wrapper.properties` file:
+```
+Minimum supported Gradle version is 4.10.1. Current version is 4.8.
+```
+
+This error included a "refactor" (i.e. automagically fix) option that I could click to fix it. What it did was go into the `gradle-wrapper.properties` file:
 
 ```
 distributionBase=GRADLE_USER_HOME
@@ -60,9 +64,9 @@ Remove minSdkVersion and sync project
 Affected Modules: openCVLibrary343, openCVSamplefacedetection
 ```
 
-I think that build settings used to be declared in the manifest XML file, but then got replaced by this whole gradle thing. This was also another easy fix, it didn't have straight up refactor options but included links to where the `minSdk` tags were defined. I went ahead and deleted those tags in the `AndroidManifest.xml` files on the openCVLibrary343 and openCVSamplefacedetection modules. `minSdkVersion` properties were already set in the gradle files for both modules.
+I think that build settings used to be declared in the manifest XML file, but then got replaced by this whole gradle thing. This was also another easy fix; it didn't have straight up refactor options, but included links to where the `minSdk` tags were defined. I went ahead and deleted those tags in the `AndroidManifest.xml` files on the openCVLibrary343 and openCVSamplefacedetection modules. `minSdkVersion` properties were already set in the gradle files for both modules.
 
-I also got the warning `Configuration 'compile' is obsolete and has been replaced with 'implementation' and 'api'.` To make this warning go away, I just replaced references to `compile` in the `build.gradle` files to `implementation` instead.
+I also got the warning `Configuration 'compile' is obsolete and has been replaced with 'implementation' and 'api'.` To make this warning go away, I just replaced `compile` commands in the `build.gradle` files to `implementation` commands instead.
 
 At this point, my openCVSamplefacedetection module's `build.gradle` file looked like this:
 
@@ -129,7 +133,7 @@ If I made another project that only used Java code, like the color-blob-detectio
 
 So I pretty much narrowed down my problem into figuring out how to get specifically the native code part of the face-detection project working. 
 
-After falling asleep at 3 AM and waking up the next day at 2PM, I re-attacked the problem. I wandered my way into the [OpenCV GitHub page](https://github.com/opencv/opencv), which included more up-to-date android code samples! That was nice and all, but I also needed a more up-to-date version of the SDK.. This wasn't directly hosted on github, but they provided some python scripts to create your own SDKs. So, I downloaded the entire OpenCV repository, went to `platforms\android\build_sdk.py`, and immediately tried just double-clicking it to see if it worked. That didn't work, I had to call it with command-line arguments. I tried to be fancy and run the script from WSL (windows subsytem for linux), but that had problenms because it called windows executables by their filename (without the .exe extension), and WSL didn't know how to handle that, and it also used windows paths starting with `C:\`, and WSL didn't like that either.
+After falling asleep at 3 AM and waking up the next day at 2PM, I re-attacked the problem. I wandered my way into the [OpenCV GitHub page](https://github.com/opencv/opencv), which included more up-to-date android code samples! That was nice and all, but I also needed a more up-to-date version of the SDK.. This wasn't directly hosted on github, but they provided some python scripts to create your own SDKs. So, I downloaded the entire OpenCV repository, went to `platforms\android\build_sdk.py`, and immediately tried just double-clicking it to see if it worked. That didn't work, I had to call it with command-line arguments. I tried to be fancy and run the script from WSL (windows subsytem for linux), but that had problems because it called windows executables by their filename (without the .exe extension), and WSL didn't know how to handle that, and it also used windows paths starting with `C:\`, and WSL didn't like that either.
 
 Instead, I used powershell. In WSL, my (failed) command looked like 
 
