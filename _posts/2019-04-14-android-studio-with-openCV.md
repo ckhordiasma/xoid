@@ -10,13 +10,15 @@ The first things I did were to download the most up-to-date version of Android S
 
 After waiting for Android Studio to finish downloading and installing, I immediately tried importing in one of the sample projects located in the OpenCV Android SDK files called 'face-detection.' It imported a module for the face detection application (openCVSamplefacedetection), as well as a module for the actual OpenCV library SDK (openCVLibrary343). I immediately got a ton of errors, which I will detail below.
 
+The first error:
+
 ```
 ERROR: Could not find com.android.tools.build:gradle:3.3.2.
 ```
 
 gradle is some sort of configuration language used for managing project settings and build settings. My initial gradle file looked like this:
 
-```gradle
+``` gradle
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
@@ -64,7 +66,7 @@ I also got the warning `Configuration 'compile' is obsolete and has been replace
 
 At this point, my openCVSamplefacedetection module's `build.gradle` file looked like this:
 
-```gradle
+``` gradle
 apply plugin: 'com.android.application'
 
 android {
@@ -131,19 +133,19 @@ After falling asleep at 3 AM and waking up the next day at 2PM, I re-attacked th
 
 Instead, I used powershell. In WSL, my (failed) command looked like 
 
-```bash
-python .\build_sdk.py --sdk_path \mnt\c\Android\sdk \mnt\c\opencv_output\
+``` shell
+python ./build_sdk.py --sdk_path /mnt/c/Android/sdk /mnt/c/opencv_output/
 ```
 
 In powershell, my command was (I don't have python on my PATH):
 
-```powershell
+``` powershell
 $env:LOCALAPPDATA\Programs\Python\Python36\python.exe .\build_sdk.py --sdk_path C:\Android\sdk\ C:\opencv_output\
 ```
 
 This didn't work, I was getting `cannot concat bytes to str` errors.. Turns out the code was written for Python 2, so I installed that for all users and then ran
 
-```powershell
+``` powershell
 C:\Python27\python.exe .\build_sdk.py --sdk_path C:\Android\sdk\ C:\opencv_output\
 ```
 
