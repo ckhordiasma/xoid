@@ -8,7 +8,7 @@ At my current workplace, emails are frequently frequently encrypted/decrypted in
 
 Yesterday, I set out with a goal of learning how to encrypt/decrypt things with my smartcard in linux, with an end goal of figuring out how to decrypt email messages from work, and an ultimate goal of building my own application to do this task. I was driven to learn this after several unsuccessful attempts to use my work's version of webmail during business travel.. our webmail is supposed to have the ability to open encrypted emails, but more often than not, that feature does not work (and it requires internet explorer, of all things)! In webmail, instead of showing the message, an "smime.p7m" encrypted attachment is given. So my goal was to be able to freely decrypt those smime messages using my smartcard from my home linux computer.
 
-So, first things first: [googling around / finding tutorials] (https://github.com/OpenSC/OpenSC/wiki/Quick-Start-with-OpenSC) and installing a bunch of stuff.  
+So, first things first: [googling around / finding tutorials](https://github.com/OpenSC/OpenSC/wiki/Quick-Start-with-OpenSC) and installing a bunch of stuff.  
 
 ```bash
 sudo apt-get install openssl opensc pcsc_tools
@@ -41,7 +41,7 @@ openssl
 engine dynamic -pre SO_PATH:/usr/lib/engines/engine_pkcs11.so -pre ID:pkcs11 -pre LIST_ADD:1 -pre LOAD -pre MODULE_PATH:opensc-pkcs11.so
 ```
 
-This did not work, saying it coukld not find the SO_PATH. Rereading the tutorial, I determined that I needed to download this [package] (https://github.com/OpenSC/libp11/blob/master/INSTALL.md) and install it. Installing it was easy, I just followed the install instructions on the website (untarball it and run the config/make/install commands). 
+This did not work, saying it coukld not find the SO_PATH. Rereading the tutorial, I determined that I needed to download this [package](https://github.com/OpenSC/libp11/blob/master/INSTALL.md) and install it. Installing it was easy, I just followed the install instructions on the website (untarball it and run the config/make/install commands). 
 
 During my process of figuring things out, I also installed some packages `sudo apt-get install libp11-3 libengine-pkcs11-openssl` but I'm honestly not sure if this was even necessary or redundant. I am including it here for completeness.
 
@@ -84,7 +84,7 @@ pkcs11-tool -v -s -m RSA-X-509 -i text.txt -o outfile.txt
 pkcs11-tool -v --decrypt -m RSA-X-509 -i outfile.txt -o backinfile.txt 
 ```
 
-Clearly, I was using this tool incorrectly. Since I was stuck, I went on google some more and found [this other article] (https://github.com/OpenSC/OpenSC/wiki/Using-pkcs11-tool-and-OpenSSL) from the OpenSC wiki, and in the second half it talks about encrypting stuff with a smartcard. Just what I wanted!
+Clearly, I was using this tool incorrectly. Since I was stuck, I went on google some more and found [this other article](https://github.com/OpenSC/OpenSC/wiki/Using-pkcs11-tool-and-OpenSSL) from the OpenSC wiki, and in the second half it talks about encrypting stuff with a smartcard. Just what I wanted!
 
 Encryption is a confusing process, and it gets more confusing the more "foolproof" your encryption method is. I'm not going to try very hard to explain it, because I am not an expert in it myself. 
 
@@ -131,7 +131,7 @@ echo "hello world! hello world again! I need to make this file big enough or els
 openssl rsautl -encrypt -inkey key.pub -in data2 -pubin -out data2.crypt
 ```
 
-All right, clearly I am stuck and need help from the internet. I found [this] (https://stackoverflow.com/questions/7143514/how-to-encrypt-a-large-file-in-openssl-using-public-key), which told me to use the smime type of openssl! Wow, that's the same name as the thing that my encrypted emails spit out! I bet they are related!
+All right, clearly I am stuck and need help from the internet. I found [this](https://stackoverflow.com/questions/7143514/how-to-encrypt-a-large-file-in-openssl-using-public-key), which told me to use the smime type of openssl! Wow, that's the same name as the thing that my encrypted emails spit out! I bet they are related!
 
 Note that the encryption terminology is almost the same as earlier encryption commands. I'm still using the public key off the smartcard found using `pkcs11-tool` and it's still using the `openssl` command.
 
@@ -146,7 +146,7 @@ Decrypting ended up being a little more tricky. I couldn't get pkcs11-tool to fi
 pkcs11-tool --id 2 --decrypt --input-file data2.crypt -o data2_decrypted
 ```
 
-Doing some more [googling around] (https://gist.github.com/kpe/15dcfc7ed46321347320faa65eacfb7d), I discovered something very fundamental and important: Instead of using `pkcs11-tool`, I could use `openssl` commands with a customized openssl configuration file and decrypt things that way!
+Doing some more [googling around](https://gist.github.com/kpe/15dcfc7ed46321347320faa65eacfb7d), I discovered something very fundamental and important: Instead of using `pkcs11-tool`, I could use `openssl` commands with a customized openssl configuration file and decrypt things that way!
 
 Contents of configuration file, `pkcs11_engine.conf`
 
