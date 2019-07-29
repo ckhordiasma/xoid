@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remote Desktop Certificates"
-date: 2019-07-22
+date: 2019-07-28
 ---
 
 Last week, I made a post about my project for command-line encryption and decrpytion of Outlook emails using a smart card. A day before I worked on that project, I was actually working on another, tangentially related project relating to encryption and openssl.
@@ -12,7 +12,7 @@ After seeing that warning time after time for several years, I figured it was ab
 
 Like most projects, I first started by using a rather unknown search tool known as Google to find some information about the problem. [this](https://gist.github.com/mtigas/952344) and [that](https://www.wikihow.com/Be-Your-Own-Certificate-Authority) were some good starting points for understanding what I needed to do.
 
-##Basic Steps
+# Basic Steps
 
 The first thing I had to do was better understand how certificates work. Once I did that, did the following things:
 
@@ -21,7 +21,7 @@ The first thing I had to do was better understand how certificates work. Once I 
 1. Use Root CA to generate a intermediate certificate for my server, including settings like a revocation list location and key/extended key usage
 1. Configure my server to announce that certificate if it receives any RDP requests
 
-##Certificates
+# Certificates
 
 SSL/TLS certificates are a way of creating digital structures of trust, sort of like government-issued ID cards for digital objects. People "trust" real-life ID cards because they trust the government that issued those ID cards. For certificates, the underlying basis for trust is.... math, specifically the math of really large prime numbers. 
 
@@ -61,13 +61,13 @@ It is going to ask you for passwords in a few steps of the process. Don't forget
 
 I now have a .crt file, which is the root CA certificate that I will use for all subsequent certificate signing. 
 
-## Trusting certificates
+# Trusting certificates
 
 On windows, this is pretty straightforward. You double click on the .crt file and install the root CA certificate through a GUI. I plopped mine in the "Trusted Root CA" folder. On an iPhone, you need to get the .crt file on your phone somehow (email it to yourself -> add it to your files -> click on it). The phone will tell you that it has downloaded this profile, and you can get to a point where it asks you to install or delete the profile. It will initially say that the profile is untrusted. After you install it, go to settings -> general -> about -> certificate trust settings -> and enable full trust for the root CA you just installed.
 
 Now that I have done this, my desktop computer and iphone will trust anything that is signed by the root CA that I just made.
 
-## Signed Certificate for RDP server
+# Signed Certificate for RDP server
 
 With my shiny new root CA, I can make a subordinate certificate (think: ID CARD) for my server. This ended up being a little tricky because of all the little nitnoid settings that I had to get correct.
 
@@ -87,22 +87,22 @@ openssl req -in server.csr -noout -text
 
 # using root CA to sign new key for server
 
-##didnt work
+## didnt work
 touch ./demoCA/cacert.pem
 openssl ca -out server-signed.crt -keyfile CA.key -verbose -infiles server.csr
 
-##worked but didn't specify extended key usage or certificate revocation list
+## worked but didn't specify extended key usage or certificate revocation list
 openssl x509 -req -config ./openssl.cnf -in server.csr -CA CA-signed.crt -CAkey CA.key -CAcreateserial -out server-signed.crt -addtrust serverAuth -days 9001 -sha256
 
-#worked best
+# worked best
 touch ./demoCA/cacert.pem
 mkdir ./demoCA/private
 touch ./demoCA/private/cakey.pem
 openssl ca -in server.csr -out server-signed.crt -keyfile CA.key -cert CA-signed.crt -config ./openssl.cnf
 
-#sometimes ran into an error when doing openssl ca, where nothing happened after password entry. removing index.txt fixed it.
+# sometimes ran into an error when doing openssl ca, where nothing happened after password entry. removing index.txt fixed it.
 
-#View contents of CRT:
+# View contents of CRT:
 openssl x509 -in server-signed.crt -text -noout
 
 ```
@@ -120,32 +120,32 @@ The one tricky part is the config file settings, which are used in conjunction w
 ```cnf
 #... initial code in config file 
 
-#Section that is run during certificate requests
+# Section that is run during certificate requests
 [ req ]
 
 # ... A bunch of other stuff will be here
 
-#The v3_req section will cover what to do for request extensions
+# The v3_req section will cover what to do for request extensions
 req_extensions = v3_req
 
 # ... other code ...
 
-#v3_req section
+# v3_req section
 [v3_req]
 
 basicConstraints = CA:FALSE
 
-#Key should only be used for these things. This should be important for Windows compatibility especially
+# Key should only be used for these things. This should be important for Windows compatibility especially
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 extendedKeyUsage = serverAuth, clientAuth
 
-#The certificate revocation list (CRL) located at said URL will tell you if there are any bad certificates
+# The certificate revocation list (CRL) located at said URL will tell you if there are any bad certificates
 crlDistributionPoints = URI:https://website.com/CA.crl
 
-#refer to the section alt_names for other names for the CRL website
+# refer to the section alt_names for other names for the CRL website
 subjectAltName  = @alt_names
 
-#alt_names custom section
+# alt_names custom section
 [alt_names]
 DNS.1 = website.com
 DNS.2 = *.website.com
@@ -161,14 +161,14 @@ This conf file does a few things:
 
 I won't go into too much detail, mainly because I don't understand it well enough yet myself. Bottom line, now I have a neat, signed certificate that my server can broadcast, and because my remote clients trust my root CA, they can verify any certificate to ensure that is signed by my root CA. Now, all I need to do is to make my server broadcast the correct certificate.
 
-## RDP certificate announcement
+# RDP certificate announcement
 
 I've been calling it a server, but really I am just referring to my desktop computer. If I actually had windows server softare, there are several GUI-type tools provided by windows to generate certificates nicely for this. Since I don't have that, I had to do some custom key exporting and registry editing to make this work. I used [this](https://support.microsoft.com/en-gb/help/2001849/how-to-force-remote-desktop-services-on-windows-7-to-use-a-custom-serv) to help me figure it all out.
 
 First, I needed to export my server private key and certificate out into a nice format for Windows. 
 
 ```bash
-#create a pfx file from a private key and a certificate. It will ask you for a password.
+# create a pfx file from a private key and a certificate. It will ask you for a password.
 openssl pkcs12 -export -out server.pfx -inkey server.key -in server-signed.crt 
 ```
 Next, I need to double-click that .pfx file and import it into windows. I placed mine in the personal folder of the local computer certificates. You will need to use the same password that you just made during the pfx generation step. 
@@ -178,16 +178,16 @@ After importing, go to the certification manager (search "manage computer certif
 Next, you have to make it so that your RDP will actually publish the cert that you want it to. I made a powershell script to do that 
 
 ```powershell
-#paste your thumbprint here
+# paste your thumbprint here
 $hex = "00112233445566778899AABBCCDDEEFF00112233"
 
-#make uppercase and put commas between every two characters except the last pair
+# make uppercase and put commas between every two characters except the last pair
 $hex = $hex.toUpper() -replace '(..(?!$))','$1,'
 
-#split/add newlines on the commas you just made (probably could be optimized), and prefix with 0x to denote hex
+# split/add newlines on the commas you just made (probably could be optimized), and prefix with 0x to denote hex
 $hexified = $hex.Split(',') | % { "0x$_"}
 
-#set the following registry key with the name SSLCertificateSHA1Hash and with the value as the hex values cast to byte format
+# set the following registry key with the name SSLCertificateSHA1Hash and with the value as the hex values cast to byte format
 New-ItemProperty -Force -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\" -Name "SSLCertificateSHA1Hash" -PropertyType Binary  -Value ([byte[]]$hexified)
 ```
 
@@ -196,12 +196,12 @@ That was the final step! Now, restart your computer/restart the RDP service, and
 
 ... not going to lie, you will probably still get warnings. 
 
-## Certificate revocation lists
+# Certificate revocation lists
 
 If you were paying attention, you saw that I referenced CRLs, and that there were some lines in the openssl configuration file listed above about CRL URLs. The CRL is like a wanted list of misbehaving certificates. Most computers are set up to check any given CRLs to make sure it's not gettting a bad certificate. If for some reason a certificate doesn't give up a reference CRL, the computer will get suspicious and warn the user about it. That's what happened to me.. so I made a certificate revocation list and uploaded it to my website, mostly following instructions from [this](https://blog.didierstevens.com/2013/05/08/howto-make-your-own-cert-and-revocation-list-with-openssl/). 
 
 ```bash
-#generating certificate revocation list file for root CA
+# Generating certificate revocation list file for root CA
 echo 100 > ./demoCA/crlnumber
 openssl ca -config ./openssl.cnf -gencrl -keyfile CA.key -cert CA-signed.crt -out CA.crl.pem
 openssl crl -inform PEM -in CA.crl.pem -outform DER -out CA.crl
@@ -209,17 +209,17 @@ openssl crl -inform PEM -in CA.crl.pem -outform DER -out CA.crl
 
 I then uploaded the CA.crl file to my website (it would have to be located at website.com/CA.crl as specified in the config file, and the warning went away as expected.
 
-## Other things to note
+# Other things to note
 
-###Passwords
+## Passwords
 
 A lot of the steps had passwords involved. I am not sure which ones needed to be set, so I made a new password whenever it asked me for one. Don't forget those passwords!
 
-## Root CA security
+# Root CA security
 
 This entire system falls apart if your root CA is compromised! keep it somewhere safe and disconnected from the internets!!
 
-## Name consistency
+# Name consistency
 
 In order for things to get verified correctly, fields related to the company name, user name, and location must be set the same between root and subordinate CAs!
 
