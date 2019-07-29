@@ -12,7 +12,7 @@ After seeing that warning time after time for several years, I figured it was ab
 
 Like most projects, I first started by using a rather unknown search tool known as Google to find some information about the problem. [this](https://gist.github.com/mtigas/952344) and [that](https://www.wikihow.com/Be-Your-Own-Certificate-Authority) were some good starting points for understanding what I needed to do.
 
-# Basic Steps
+## Basic Steps
 
 The first thing I had to do was better understand how certificates work. Once I did that, did the following things:
 
@@ -21,7 +21,7 @@ The first thing I had to do was better understand how certificates work. Once I 
 1. Use Root CA to generate a intermediate certificate for my server, including settings like a revocation list location and key/extended key usage
 1. Configure my server to announce that certificate if it receives any RDP requests
 
-# Certificates
+## Certificates
 
 SSL/TLS certificates are a way of creating digital structures of trust, sort of like government-issued ID cards for digital objects. People "trust" real-life ID cards because they trust the government that issued those ID cards. For certificates, the underlying basis for trust is.... math, specifically the math of really large prime numbers. 
 
@@ -61,13 +61,13 @@ It is going to ask you for passwords in a few steps of the process. Don't forget
 
 I now have a .crt file, which is the root CA certificate that I will use for all subsequent certificate signing. 
 
-# Trusting certificates
+## Trusting certificates
 
 On windows, this is pretty straightforward. You double click on the .crt file and install the root CA certificate through a GUI. I plopped mine in the "Trusted Root CA" folder. On an iPhone, you need to get the .crt file on your phone somehow (email it to yourself -> add it to your files -> click on it). The phone will tell you that it has downloaded this profile, and you can get to a point where it asks you to install or delete the profile. It will initially say that the profile is untrusted. After you install it, go to settings -> general -> about -> certificate trust settings -> and enable full trust for the root CA you just installed.
 
 Now that I have done this, my desktop computer and iphone will trust anything that is signed by the root CA that I just made.
 
-# Signed Certificate for RDP server
+## Signed Certificate for RDP server
 
 With my shiny new root CA, I can make a subordinate certificate (think: ID CARD) for my server. This ended up being a little tricky because of all the little nitnoid settings that I had to get correct.
 
@@ -161,7 +161,7 @@ This conf file does a few things:
 
 I won't go into too much detail, mainly because I don't understand it well enough yet myself. Bottom line, now I have a neat, signed certificate that my server can broadcast, and because my remote clients trust my root CA, they can verify any certificate to ensure that is signed by my root CA. Now, all I need to do is to make my server broadcast the correct certificate.
 
-# RDP certificate announcement
+## RDP certificate announcement
 
 I've been calling it a server, but really I am just referring to my desktop computer. If I actually had windows server softare, there are several GUI-type tools provided by windows to generate certificates nicely for this. Since I don't have that, I had to do some custom key exporting and registry editing to make this work. I used [this](https://support.microsoft.com/en-gb/help/2001849/how-to-force-remote-desktop-services-on-windows-7-to-use-a-custom-serv) to help me figure it all out.
 
@@ -196,7 +196,7 @@ That was the final step! Now, restart your computer/restart the RDP service, and
 
 ... not going to lie, you will probably still get warnings. 
 
-# Certificate revocation lists
+## Certificate revocation lists
 
 If you were paying attention, you saw that I referenced CRLs, and that there were some lines in the openssl configuration file listed above about CRL URLs. The CRL is like a wanted list of misbehaving certificates. Most computers are set up to check any given CRLs to make sure it's not gettting a bad certificate. If for some reason a certificate doesn't give up a reference CRL, the computer will get suspicious and warn the user about it. That's what happened to me.. so I made a certificate revocation list and uploaded it to my website, mostly following instructions from [this](https://blog.didierstevens.com/2013/05/08/howto-make-your-own-cert-and-revocation-list-with-openssl/). 
 
@@ -209,17 +209,17 @@ openssl crl -inform PEM -in CA.crl.pem -outform DER -out CA.crl
 
 I then uploaded the CA.crl file to my website (it would have to be located at website.com/CA.crl as specified in the config file, and the warning went away as expected.
 
-# Other things to note
+## Other things to note
 
-## Passwords
+### Passwords
 
 A lot of the steps had passwords involved. I am not sure which ones needed to be set, so I made a new password whenever it asked me for one. Don't forget those passwords!
 
-# Root CA security
+### Root CA security
 
 This entire system falls apart if your root CA is compromised! keep it somewhere safe and disconnected from the internets!!
 
-# Name consistency
+### Name consistency
 
 In order for things to get verified correctly, fields related to the company name, user name, and location must be set the same between root and subordinate CAs!
 
