@@ -2,6 +2,8 @@
 layout: post
 title: "Remote Desktop Certificates"
 date: 2019-07-28
+comment_id: 8
+post_id: 8
 ---
 
 Last week, I made a post about my project for command-line encryption and decrpytion of Outlook emails using a smart card. A day before I worked on that project, I was actually working on another, tangentially related project relating to encryption and openssl.

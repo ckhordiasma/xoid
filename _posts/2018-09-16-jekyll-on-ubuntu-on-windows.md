@@ -2,6 +2,7 @@
 layout: post
 title: "Jekyll on Ubuntu on Windows"
 date: 2018-09-16
+post_id: 4
 ---
 Doing more work with Ubuntu on windows. I accidentally overwrote my Ubuntu on Windows installation, deleting all of my Linux files! Oh well. Since I'm starting from scratch, I am working on getting things back to working again, starting with Jekyll and GitHub/Gitlab.
 
