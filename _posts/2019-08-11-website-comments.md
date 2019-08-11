@@ -2,7 +2,7 @@
 layout: post
 title: "Website comments"
 date: 2019-08-11
-post_id: 9
+post_id: 10
 ---
 
 Today I am working on adding functionality on my website for users to add comments. [some people](https://github.com/apps/utterances) have [already done this](https://artsy.github.io/blog/2017/07/15/Comments-are-on/), but I decided to not go with their way and just use the bare-bones github issues functionality without much interfacing. 
@@ -46,6 +46,6 @@ The key parts are:
 
 That ended up working great. I definitely could have automated the numbering process even more with a bash FOR loop or some sed-awk stuff I think, but didn't want to go that far.  I eventually decided to use `post_id` instead of `comment_id`, so I ran `sed -i.bak s/comment_id/post_id/ *.md` on my files (NOTE: If I ever do this again, I will have to be more specific in my expression, since I reference `comment_id` and `post_id` several times in this post).
 
-Once I had done that, I needed to go and manually make an issue for every website post so far. Hopefully this is something I can automate with a github bot in the future.
+Once I had done that, I needed to go and manually make an issue for every website post so far. Hopefully this is something I can automate with a github bot in the future. I also needed to slightly modify my `_posts` layout to add some text at the botton of each page with a link to the relevant issues page. If I did my job correctly, it should appear as the next sentence.
 
 

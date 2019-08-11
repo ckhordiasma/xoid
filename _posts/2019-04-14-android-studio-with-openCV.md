@@ -2,7 +2,7 @@
 layout: post
 title: "Getting OpenCV to work on Android"
 date: 2019-04-14
-post_id: 6
+post_id: 7
 ---
 
 OpenCV (open computer vision) is a c++ project devoted to computer vision applications. For this weekend project, I was specifically looking into how it could be used in an Android application. To start off, I read through the OpenCV android tutorials located [here](https://docs.opencv.org/2.4/doc/tutorials/introduction/android_binary_package/android_dev_intro.html) and [here](https://docs.opencv.org/2.4/doc/tutorials/introduction/android_binary_package/O4A_SDK.html). Unfortunately, these tutorials referenced an older version of Android Studio... (nowadays, there's a fancy new Android studio that even has a dark mode!)... so I had to try my best to translate outdated instructions towards the new stuff. 
