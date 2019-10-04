@@ -1,0 +1,36 @@
+---
+layout: default
+title: Math Practice
+---
+<h1>{{page.title}} </h1>
+<p>Practice Maths Here: </p>
+<span id="maths"></span>
+<style type="text/css">#maths{font-family:monospace;font-size: x-large;}</style>
+<script type="text/javascript">
+var mathSpan = document.getElementById("maths");
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+var x, y;
+var eqText, ansText;
+
+function mathGen(i){
+  if(i == 0){return;}
+  x = Math.round(Math.random()*20);
+  y = Math.round(Math.random()*20);
+  eqText = document.createTextNode(`${x} x ${y} = `);
+  ansText = document.createTextNode(`${x*y}`);
+  mathSpan.appendChild(eqText);
+  setTimeout(function(){
+    mathSpan.appendChild(ansText);
+    mathSpan.appendChild(document.createElement("br"));
+    mathGen(i-1);
+  },1500);
+}
+mathGen(500);
+</script>
