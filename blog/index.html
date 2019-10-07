@@ -6,7 +6,9 @@ title: Xoid Blog
 	<ul class="posts">
 
 	  {% for post in site.posts %}
+      {% if post.layout == "post" %}
 	    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+      {% endif %}
 	  {% endfor %}
 	</ul>
 	<p> Want to give feedback on a blog post? <a href="https://github.com/ckhordiasma/ckhordiasma.github.io/issues?q=is%3Aopen+is%3Aissue+label%3A%22Website+Post%22">Go here</a></p>
