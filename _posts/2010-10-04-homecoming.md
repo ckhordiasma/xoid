@@ -1,8 +1,8 @@
 ---
-layout: wp_post
+layout: post
 title: "Homecoming Week"
 date: 2010-10-04
-post_id: 3
+
 ---
 A few weeks ago, I had this AFROTC thing called LDW, which is a one-night campout that is supposed to simulate a deployed environment.  It was very strict and structured– everything we did was tightly scheduled, and we had to always have a “wingman” (buddy system) with us at all times.  It was fun, though; we got to go rock climbing and play paintball, and I learned a lot about Air Force procedure.
 

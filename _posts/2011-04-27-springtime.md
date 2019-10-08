@@ -1,8 +1,8 @@
 ---
-layout: wp_post
+layout: post
 title: "Springtime"
 date: 2011-04-27
-post_id: 4
+
 ---
 
 Sorry I haven’t written for a while

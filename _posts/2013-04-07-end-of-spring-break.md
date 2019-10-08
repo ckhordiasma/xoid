@@ -1,8 +1,8 @@
 ---
-layout: wp_post
+layout: post
 title: "End of Spring Break"
 date: 2013-04-07
-post_id: 7
+
 ---
 Today’s the last day of Spring Break before school starts again.  I have PT tomorrow at 6AM, so I have to sleep early tonight.
 

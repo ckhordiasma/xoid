@@ -1,8 +1,8 @@
 ---
-layout: wp_post
+layout: post
 title: "Spring Break"
 date: 2013-03-29
-post_id: 6
+
 ---
 Here’s a quick list of what happened after the rafting trip:
 Went home

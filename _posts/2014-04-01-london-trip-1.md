@@ -1,8 +1,8 @@
 ---
-layout: wp_post
+layout: post
 title: "London Trip, Day 1"
 date: 2014-04-01
-post_id: 12
+
 ---
 For most of the beginning of my trip, I was asleep. I had to wake up early to catch the bus to Indianapolis, and I ended up falling asleep while waiting for the bus. Luckily, I woke up in time to catch the bus, and as soon as I sat down, I passed out for the 45-minute drive, and someone had to wake me up to get me off the shuttle at the airport. Once I got into my gate, I went to sleep again, because I had around a 3 hour wait. My first flight to Chicago got delayed, which made me worry that I would miss the second flight. When I got to ORD, I got to take the shuttle bus for delayed passengers directly to my terminal, which was nice. I didn’t miss my second flight, and in fact, that flight got really delayed due to catering issues.
 

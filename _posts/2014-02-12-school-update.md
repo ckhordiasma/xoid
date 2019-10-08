@@ -1,8 +1,8 @@
 ---
-layout: wp_post
+layout: post
 title: "School Update"
 date: 2014-02-12
-post_id: 10
+
 ---
 This year has been very busy, due to having to do a senior design project.
 

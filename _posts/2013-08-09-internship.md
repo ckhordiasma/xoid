@@ -1,8 +1,8 @@
 ---
-layout: wp_post
+layout: post
 title: "Internship"
 date: 2013-08-09
-post_id: 9
+
 ---
 There are a few non-computer related things that I have been doing while at my internship.
 

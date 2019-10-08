@@ -1,8 +1,8 @@
 ---
-layout: wp_post
+layout: post
 title: "More School Updates"
 date: 2014-02-16
-post_id: 11
+
 ---
 Thought of some more things to talk about
 
