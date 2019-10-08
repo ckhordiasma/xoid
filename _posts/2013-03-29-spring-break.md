@@ -39,7 +39,7 @@ My third class is called Junior Design.  My team and I have a 10-page research p
 
 My fourth class is called electromagnetic metamaterials.  Right now, our class is trying to make something called a ‘double negative material,’ below is a (click to view animated) picture of a simulated electromagnic wave traveling through a double negative material.
 
-![dng_l2_angled_DNG](/media/dng_l2_angled_dng.gif)
+![dng_l2_angled_DNG](/media/dng_l2_angled_dng.gif){:width="75%"}
 
 for Air Force, I’m part of the committee in charge of planning a one-day event called Operation 218, which is an event to help get the sophomores get ready for Field Training.  It’s kind of like the LDW that I posted about earlier, except shorter.  I also have that homework assignment due for my Air Force Class.
 

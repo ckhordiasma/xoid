@@ -8,7 +8,7 @@ This year has been very busy, due to having to do a senior design project.
 
 For senior design, I am working on more electromagnetics-related stuff, which is sort of related to the things I was doing last year.
 
-![ebg structure](/media/ebg-animation.gif)
+![ebg structure](/media/ebg-animation.gif){:width="75%"}
 
 The main difference is that this year, it’s an official design project, so there is a lot of paperwork that my team and I have to do in order to do well in the ‘senior design’ class. The paperwork takes up a lot of time. We have to record all the time we spend on the project, and so far I have spent 230 hours on it.
 
