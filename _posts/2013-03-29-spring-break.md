@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: wp_post
 title: "Spring Break"
 date: 2013-03-29
 

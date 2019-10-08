@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: wp_post
 title: "School Update"
 date: 2014-02-12
 

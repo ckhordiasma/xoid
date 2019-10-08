@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: wp_post
 title: "Internship"
 date: 2013-08-09
 

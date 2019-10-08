@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: wp_post
 title: "Homecoming Week"
 date: 2010-10-04
 

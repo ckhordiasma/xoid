@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: wp_post
 title: "Springtime"
 date: 2011-04-27
 
