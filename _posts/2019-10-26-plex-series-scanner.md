@@ -2,7 +2,7 @@
 layout: post
 title: "Plex Series Scanner Adjustments"
 date: 2019-10-26
-post_id: 11
+post_id: 18
 ---
 
 I feel like some of my computer-related problems become so much easier to solve when I realize that everything is just code, and code can be adjusted/fixed.
