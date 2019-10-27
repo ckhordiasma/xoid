@@ -2,22 +2,92 @@
 layout: default
 title: xoid 
 ---
-<div class="blurb">
-	<h1>xoid</h1>
-	<p>Hello, welcome to my website. </p>
-    <script src="https://www.google.com/recaptcha/api.js?6Ldmqr8UAAAAAJpk9nuaE-XrXjRGZuZR6dekZokO"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6Ldmqr8UAAAAAJpk9nuaE-XrXjRGZuZR6dekZokO"></script>
 
 <script>
 
-grecaptcha.ready(function() {
+function sendEmail(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200){
+            console.log("request success");
+            console.log(this.responseText);
+            var resp = this.responseText;
+            var statusTag = document.getElementById('contact-response'); 
+            if(resp[0] != '0'){
+                statusTag.innerHTML = 'Error ' + resp;
+            }else{
+                var submitBtn = document.getElementById("contact-submit");
+                submitBtn.disabled = true;
+                submitBtn.value = "Email Sent!"
+            }
+        }
+    }
 
-    grecaptcha.execute('6Ldmqr8UAAAAAJpk9nuaE-XrXjRGZuZR6dekZokO', {action: 'homepage'}).then(function(token) {
-
-       console.log('asdf?');
-
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Ldmqr8UAAAAAJpk9nuaE-XrXjRGZuZR6dekZokO', {action: 'homepage'}).then(
+            function(token) {
+                document.getElementById('g-recaptcha-response').value = token;
+                xhttp.open("POST", "https://apps.xoid.us/contact.pl", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                var postdata = packFormData('contact-form');
+                xhttp.send(postdata);
+            });
     });
-
-});
-
+}
+function packFormData(formID){
+    var form = document.forms[formID];
+    var possibleInputs = form.elements;
+    var data = '';
+    for (el of possibleInputs){
+        if((el.tagName == 'INPUT' && el.type != 'submit') || el.tagName == 'TEXTAREA'){
+            data += el.name;
+            data += "=";
+            data += el.value;
+            data += "&";
+        }
+    }
+    console.log(data);
+    return data;
+}
 </script>
+<style type="text/css">
+#contact-form>input[type=text],#contact-form>input[type=email],#contact-form>textarea{
+    width:100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#contact-form>input[type=submit] {
+  width: 100%;
+  background-color: #4e4f54;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#contact-form>input[type=submit]:hover, #contact-form>input[type=submit]:disabled{
+  background-color: #878992;
+}
+#form-container {
+    width:50%;
+}
+</style>
+<div class="blurb">
+	<h1>Contact</h1>
+    <div id="form-container">
+        <form id="contact-form" method="post" action="javascript: sendEmail()">
+        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
+        <input type="email" id="from" name="from" placeholder="Your email address" size="30" />
+        <textarea name="body" id="body" rows="8" cols="39" placeholder='your message'></textarea> 
+        <input id="contact-submit" type="submit" name="submit" value="contact" />
+        <span id="contact-response"> </span>
+        </form>
+    </div>
 </div><!-- /.blurb -->
