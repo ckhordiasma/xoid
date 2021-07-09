@@ -4,8 +4,6 @@ title: About
 ---
 # {{page.title}} 
 
-Hi, my name is Christopher Kodama, I am an electrical engineer who likes to code.  I currently work for the US Air Force under specialty code 62E, "Developmental Engineer." 
-
 ## Background
 
 For some unknown reason, my dad decided to try to teach me Java when I was around twelve or so. 
