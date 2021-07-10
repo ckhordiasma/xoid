@@ -28,7 +28,7 @@ function sendEmail(){
         grecaptcha.execute('6Ldmqr8UAAAAAJpk9nuaE-XrXjRGZuZR6dekZokO', {action: 'homepage'}).then(
             function(token) {
                 document.getElementById('g-recaptcha-response').value = token;
-                xhttp.open("POST", "https://apps.xoid.us/contact.pl", true);
+                xhttp.open("POST", "https://apps.xoid.net/contact.pl", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 var postdata = packFormData('contact-form');
                 xhttp.send(postdata);
