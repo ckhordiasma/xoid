@@ -14,7 +14,7 @@ function sendEmail(){
             console.log(this.responseText);
             var resp = this.responseText;
             var statusTag = document.getElementById('contact-response'); 
-            if(resp[0] != '0'){
+            if(! resp.match(/email success/)){
                 statusTag.innerHTML = 'Error ' + resp;
             }else{
                 var submitBtn = document.getElementById("contact-submit");
@@ -28,9 +28,9 @@ function sendEmail(){
         grecaptcha.execute('6Ldmqr8UAAAAAJpk9nuaE-XrXjRGZuZR6dekZokO', {action: 'homepage'}).then(
             function(token) {
                 document.getElementById('g-recaptcha-response').value = token;
-                xhttp.open("POST", "https://apps.xoid.net/contact.pl", true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                var postdata = packFormData('contact-form');
+                xhttp.open("POST", "https://go5hoxgqig.execute-api.us-east-1.amazonaws.com/xoid-contact", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                var postdata = JSON.stringify(packFormData('contact-form'));
                 xhttp.send(postdata);
             });
     });
@@ -38,13 +38,10 @@ function sendEmail(){
 function packFormData(formID){
     var form = document.forms[formID];
     var possibleInputs = form.elements;
-    var data = '';
+    var data = {}; 
     for (el of possibleInputs){
         if((el.tagName == 'INPUT' && el.type != 'submit') || el.tagName == 'TEXTAREA'){
-            data += el.name;
-            data += "=";
-            data += el.value;
-            data += "&";
+            data[el.name] = el.value;
         }
     }
     console.log(data);
