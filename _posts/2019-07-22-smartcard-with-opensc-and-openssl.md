@@ -2,7 +2,7 @@
 layout: post
 title: "Encrypting and Decrypting Email"
 date: 2019-07-22
-post_id: 8
+
 ---
 
 At my current workplace, emails are frequently frequently encrypted/decrypted in Microsoft Outlook, using a smart card that is issued to every employee. At work, we primarily use Windows, and either the default Microsoft authentication tools or middleware such as ActivClient are used in order to interface with our smart cards / smart card readers. Until I started this project yesterday, I had only ever used GUI applications in order to do anything related to my smartcard. 
