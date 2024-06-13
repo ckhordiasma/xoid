@@ -5,8 +5,9 @@ date: 2022-02-24
 ---
 
 
+I bought a Cisco SG-300 off Newegg so that I could get more familiarity with Cisco switches. In hindsight, I wish I picked a switch that was more geared towards network professionals, because some of the commands are different and the feature set is not as big. However I still had a great learning experience using the switch.
 
-see below section for how I was able to get to the switch terminal from my computer with a serial connector.
+## Initial configuration process
 
 1. First thing I did was save username and password. it is in my password manager.
 
