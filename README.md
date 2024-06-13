@@ -8,7 +8,7 @@ This repository is published as a website via GitHub Pages here: https://www.xoi
 
 2. `cd` into the repo and run `bundle exec jekyll serve` 
 
-## Potential Issues
+## Issues I ran into
 
 ### `Cannot load such file -- json`
 

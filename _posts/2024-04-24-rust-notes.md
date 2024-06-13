@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Bulk editing media metadata using ffmpeg"
-date: 2024-05-27
+title: "Notes on Learning Rust"
+date: 2024-04-24
 ---
 
+This is a collection of notes that I took while I was learning Rust from the rust book website.
 
 # Shadowing
 
@@ -176,3 +177,214 @@ assert_eq!(slice, &[2, 3]);
 ```
 
 can also do general purpose array slices, which have type signature `&[T]` like `&[i32]`
+
+# Structs
+
+when defining members of a struct def, you can omit the definition if a variable name matches the struct property name:
+
+```
+fn build_user(email: String, username: String) -> User {
+    User {
+        active: true,
+        username,
+        email,
+        sign_in_count: 1,
+    }
+}
+```
+
+can also copy values from another struct using `..` notation
+
+```
+fn main() {
+    // --snip--
+
+    let user2 = User {
+        email: String::from("another@example.com"),
+        ..user1 // email won't get overwritten with the user1 value. this must come last.
+    };
+}
+```
+
+Note that doing this will make `user1` unusable because a datatype implementing `Drop` is moved, i.e. the `username` field. If only `Copy` data types were moved, then `user1` would still be usable.
+
+can also make tuple structs that only define the types and not the names:
+
+```
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+fn main() {
+    let black = Color(0, 0, 0);
+    let origin = Point(0, 0, 0);
+}
+```
+
+not sure what the purpose of unit-like structs are.
+
+```
+struct AlwaysEqual;
+
+fn main() {
+    let subject = AlwaysEqual;
+}
+```
+
+# struct methods
+
+```
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        rect1.area()
+    );
+}
+```
+
+# println! debugging struct output
+
+1. add the attribute `#[derive(Debug)]` to the beginning of the program
+2. use `println!("{:?}", my_struct)` or `println!("{:#?}", my_struct)` for pretty print
+
+can also use the `dbg!` macro and just plop in values such as `dbg!(30 * x)`
+
+# enums
+
+enums represent data classes that can either be one thing or one of others. the example in the book is ip address types:
+
+```
+enum IpAddrKind {
+    V4,
+    V6,
+}
+
+```
+
+Instead of defining a struct to actually house ip addresses, you can attach data to the enum definitions for each possible type:
+
+```
+    enum IpAddr {
+        V4(String),
+        V6(String),
+    }
+    let home = IpAddr::V4(String::from("127.0.0.1"));
+    let loopback = IpAddr::V6(String::from("::1"));
+```
+
+the enum "things" don't all have to be the same type either.
+
+```
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+
+```
+
+# the Option enum
+
+```
+    let some_number = Some(5);
+    let some_char = Some('e');
+
+    let absent_number: Option<i32> = None;
+
+```
+
+Lets coders identify when things exist or not by checking if the value is a Some(something) or just None
+
+Can use the output of the Option<T> enum using a match
+
+```
+    fn plus_one(x: Option<i32>) -> Option<i32> {
+        match x {
+            None => None,
+            Some(i) => Some(i + 1),
+        }
+    }
+
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+
+```
+
+# matches
+
+the output of the match is the result of the match item if it's a single line. if it's a block, the output is the last non-semicolon line. 
+
+The last arm of a match, if it's a string, will be coerced into a catchall variable name. If you don't care about the value, you can put a `_` instead.
+
+```
+    let dice_roll = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        other => move_player(other),
+    }
+
+    fn add_fancy_hat() {}
+    fn remove_fancy_hat() {}
+    fn move_player(num_spaces: u8) {}
+
+```
+
+in the ultimate "otherwise do nothing" case, you can do `_ => ()` 
+
+# if let
+
+if you only care for one possible outcome of an enum or something you can use if-let instead. Compare the following blocks of code:
+
+```
+    let config_max = Some(3u8);
+    match config_max {
+        Some(max) => println!("The maximum is configured to be {}", max),
+        _ => (),
+    }
+```
+
+```
+    let config_max = Some(3u8);
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {}", max);
+    }
+```
+
+if config_max can be coerced into Some(value), the if statement will proceed.
+
+# misc package notes
+
+```
+use std::io;
+use std::io::Write;
+
+// can become
+use std::io::{self, Write};
+```
+
+globs: 
+
+```
+use std::collections::*;
+```
+
+module names should match their file names for them to be correctly detected in a rust package/crate.
