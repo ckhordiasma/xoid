@@ -1,6 +1,10 @@
 name: Christopher Kodama's Website
 markdown: kramdown
 highlighter: rouge
+plugins:
+  - jekyll-postcss
+postcss:
+  cache: false
 collections:
   projects:
     output: true
