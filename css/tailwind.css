@@ -687,6 +687,10 @@ p {
   margin-top: 1px;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .line-clamp-4 {
   overflow: hidden;
   display: -webkit-box;
@@ -850,24 +854,19 @@ p {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
-.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
-.bg-slate-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
-}
-
 .bg-slate-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 
 .fill-white {
@@ -892,6 +891,16 @@ p {
   padding-bottom: 4rem;
 }
 
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .pb-28 {
   padding-bottom: 7rem;
 }
@@ -911,11 +920,6 @@ p {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .text-base {
@@ -1671,6 +1675,30 @@ p {
   }
 }
 
+.page-title {
+  margin-bottom: 1rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  --tw-text-opacity: 1;
+  color: rgb(15 23 42 / var(--tw-text-opacity));
+}
+
+@media (min-width: 640px) {
+  .page-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .page-title {
+    --tw-text-opacity: 1;
+    color: rgb(226 232 240 / var(--tw-text-opacity));
+  }
+}
+
 /*
 body {
     margin: 60px auto;
@@ -1764,10 +1792,6 @@ img {
   --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity));
 }
 
-.group:hover .group-hover\:bg-slate-50\/70 {
-  background-color: rgb(248 250 252 / 0.7);
-}
-
 .group:hover .group-hover\:bg-slate-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(226 232 240 / var(--tw-bg-opacity));
@@ -1805,11 +1829,6 @@ img {
 
   .sm\:text-center {
     text-align: center;
-  }
-
-  .sm\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
   }
 }
 
@@ -1915,10 +1934,6 @@ img {
 
   .lg\:max-w-6xl {
     max-width: 72rem;
-  }
-
-  .lg\:max-w-7xl {
-    max-width: 80rem;
   }
 
   .lg\:max-w-full {
