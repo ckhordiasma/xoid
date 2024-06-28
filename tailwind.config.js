@@ -1,5 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-
+// https://harrywang.me/tailpages-tutorial-technical 
 module.exports = {
   content: [
     './**/*.html'
