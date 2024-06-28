@@ -1,15 +1,31 @@
 ---
 layout: default
-title: Projects
+title:
 ---
 <h1>{{ page.title }}</h1>
-<ul class="posts">
+<div class="md:columns-2 gap-16 justify-evenly">
     {% for post in site.projects %}
     {% if post.layout %}
-    <li>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        <div style="font-size:0.5em;margin:auto 30% auto 5%;"> {{ post.excerpt }} </div>
-    </li>
+    <!-- div class relative needed to make the span link thing work-->
+    <div class="rounded-md break-inside-avoid flex-shadow-lg p-4 mb-16 relative hover:bg-slate-200">
+        <div class="relative">
+            <h3 class="text-base font-semibold tracking-tight text-slate-900 dark:text-slate-200 pt-8 lg:pt-0">
+                {{ post.title }} </h3>
+            <div class="mt-2 mb-4 prose prose-slate prose-a:relative prose-a:z-10 dark:prose-dark line-clamp-4">
+                <p> {{ post.excerpt }} </p>
+            </div>
+        </div>
+        <a class="flex items-center text-sm text-sky-500 font-medium" href="{{ post.url }}">
+            <span class="absolute -inset-y-2.5 -inset-x-4 "></span>
+            <span class="relative">Read more<span class="sr-only">, <!-- --> {{ post.title }} </span></span>
+            <svg
+                class="relative mt-px overflow-visible ml-2.5 text-sky-300 dark:text-sky-700" width="3" height="6"
+                viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M0 0L3 3L0 6"></path>
+            </svg>
+        </a>
+    </div>
     {% endif %}
     {% endfor %}
-</ul>
+    </ul>
