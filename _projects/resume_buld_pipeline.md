@@ -8,7 +8,9 @@ tags:
 - Bash
 - CI/CD
 ---
-[link to github project](https://github.com/ckhordiasma/resume-build-example)
+![image of pipeline](/media/resume-pipeline/pipeline.png)
+
+<https://github.com/ckhordiasma/resume-build-example>
 
 I decided to separate from the Air Force in 2024, which meant that I had to start preparing my resume and start applying for jobs. I thought it would be cool if I could version-control my resume, So I started writing my resume in LaTeX and committing the .tex files to a git repo. 
 

@@ -4,7 +4,12 @@ title: "Teachable Text Machine"
 date: 2021-04-01
 ---
 
-<a href="https://ckhordiasma.github.io/teachable-text-machine"><img src="/media/teachable-text-machine/ui.png" alt="image of ui" style="width:100%" /></a>
+
+![image of ui](/media/teachable-text-machine/ui.png)
+
+Demo site: <https://ckhordiasma.github.io/teachable-text-machine>
+
+Project site: <https://github.com/ckhordiasma/teachable-text-machine>
 
 This was a project that I built as part of a research class that I took while I was in the Air Force. I made an application that can create custom text sentiment analysis models using transfer learning on an existing ML model, in this case the universal sentence encoder. By choosing to use transfer learning (like in the original Teachable Machine project by Google), I could run both training and inference in the browser, allowing the entire application to be served as static frontend content. I used Tensorflow.js to train and evaluate the models, and svelte to produce the UI. 
 
