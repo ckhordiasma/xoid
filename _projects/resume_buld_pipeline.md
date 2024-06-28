@@ -2,6 +2,11 @@
 layout: project
 title: "Resume Build Pipeline"
 date: 2024-05-27
+tags:
+- Github Actions
+- LaTeX
+- Bash
+- CI/CD
 ---
 [link to github project](https://github.com/ckhordiasma/resume-build-example)
 

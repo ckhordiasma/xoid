@@ -98,4 +98,8 @@ PEFT MODEL (trained by me): #Person2# wants to upgrade #Person2#'s system and ha
 
 In all, including my trial and error using different compute VMs, I spent $15.65 training this model. If I were to drill down on just the costs that were associated with the GPU training, It was $5.60 for the GPU, $2 for the CPU, $0.94 for the RAM, and $0.44 for SSD, for a grand total of $8.98. 
 
-However, I also accidentally left my compute instance on overnight, so just to make sure, I went back and reran the notebook, terminating the instance once it was done. Then I checked what the differential cost was: 
+However, I also accidentally left my compute instance on overnight, so just to make sure, I went back and reran the notebook, terminating the instance once it was done. Then I checked what the differential cost was: only $1.73! I think i just learned a valuable lesson on turning off my compute VMs once I am done. 
+
+## Final Thoughts
+
+This course left me with a much firmer understanding of how LLMs work, and the labs have given me just enough confidence to consider training my own LLMs. I was able to replicate the labs on Google cloud instead of AWS, and I have a bunch more Google cloud credits left, so I think I am going to try training some more fun models! At least until I run out of credits!
