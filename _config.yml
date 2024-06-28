@@ -2,7 +2,7 @@ name: Christopher Kodama's Website
 markdown: kramdown
 highlighter: rouge
 plugins:
-  - jekyll-postcss
+  - jekyll-postcss-v2
 postcss:
   cache: false
 collections:
