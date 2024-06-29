@@ -10,7 +10,7 @@ title: Blog Posts
     <div
         class="relative sm:pb-12 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] lg:ml-[max(calc(14.5rem+1px),calc(100%-48rem))]">
         <div
-            class="hidden absolute top-3 bottom-0 right-full mr-7 md:mr-[3.25rem] w-px bg-slate-200 dark:bg-slate-800 sm:block">
+            class="hidden absolute top-3 bottom-0 right-full mr-7 md:mr-[3.25rem] w-px bg-slate-200 dark:bg-zinc-500 sm:block">
         </div>
         <div class="space-y-16">
             {% for post in site.posts %}
@@ -20,8 +20,8 @@ title: Blog Posts
                     class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl group-hover:bg-slate-200 dark:group-hover:bg-zinc-900/50">
                 </div>
                 <svg viewBox="0 0 9 9"
-                    class="hidden absolute right-full mr-6 top-2 text-slate-200 dark:text-slate-600 md:mr-12 w-[calc(0.5rem+1px)] h-[calc(0.5rem+1px)] overflow-visible sm:block">
-                    <circle cx="4.5" cy="4.5" r="4.5" stroke="currentColor" class="fill-white dark:fill-slate-900"
+                    class="hidden absolute right-full mr-6 top-2 text-slate-200 dark:text-zinc-600 md:mr-12 w-[calc(0.5rem+1px)] h-[calc(0.5rem+1px)] overflow-visible sm:block">
+                    <circle cx="4.5" cy="4.5" r="4.5" stroke="currentColor" class="fill-white dark:fill-zinc-900"
                         stroke-width="2"></circle>
                 </svg>
                 <div class="relative">
@@ -32,8 +32,8 @@ title: Blog Posts
                     </div>
                     <dl class="absolute left-0 top-0 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)]">
                         <dt class="sr-only">Date</dt>
-                        <dd class="whitespace-nowrap text-sm leading-6 dark:text-slate-400"><time
-                                datetime="2024-06-21T15:00:00.000Z">{{ post.date | date_to_string }} </time></dd>
+                        <dd class="whitespace-nowrap text-sm leading-6 dark:text-zinc-400"><time
+                                datetime="">{{ post.date | date_to_string }} </time></dd>
                     </dl>
                 </div><a class="flex items-center text-sm text-sky-500 font-medium" href="{{ post.url }}"><span
                         class="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl"></span><span

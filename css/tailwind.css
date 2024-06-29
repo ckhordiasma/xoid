@@ -2751,8 +2751,22 @@ select {
     background-color: rgb(24 24 27 / var(--tw-bg-opacity));
   }
 
+  .dark\:bg-zinc-300 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(212 212 216 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-zinc-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(113 113 122 / var(--tw-bg-opacity));
+  }
+
   .dark\:fill-slate-900 {
     fill: #0f172a;
+  }
+
+  .dark\:fill-zinc-900 {
+    fill: #18181b;
   }
 
   .dark\:text-gray-400 {
@@ -2788,6 +2802,11 @@ select {
   .dark\:text-zinc-600 {
     --tw-text-opacity: 1;
     color: rgb(82 82 91 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-zinc-400 {
+    --tw-text-opacity: 1;
+    color: rgb(161 161 170 / var(--tw-text-opacity));
   }
 
   .dark\:hover\:bg-gray-700:hover {
