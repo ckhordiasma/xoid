@@ -1,60 +1,33 @@
-body {
-    margin: 60px auto;
-    width: 70%;
-}
-nav ul, footer ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-    padding: 0px;
-    list-style: none;
-    font-weight: bold;
-}
-nav ul li, footer ul li {
-    display: inline;
-    margin-right: 20px;
-}
-a {
-    text-decoration: none;
-    color: #999;
-}
-a:hover {
-    text-decoration: underline;
-}
-h1 {
-    font-size: 3em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-}
-p {
-    font-size: 1.5em;
-    line-height: 1.4em;
-    color: #333;
-}
-footer {
-    border-top: 1px solid #d5d5d5;
-    font-size: .8em;
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+
+@layer base {
+    h1 {
+        @apply text-3xl;
+    }
+    h2 {
+        @apply text-3xl dark:text-white
+    }
+    h3 {
+        @apply text-lg dark:text-white
+    }
+    p {
+        @apply text-lg mt-4 dark:text-white;
+    }
 }
 
-ul.posts { 
-    margin: 20px auto 40px; 
-    font-size: 1.5em;
+@layer components {
+    .nav-ul {
+        @apply font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  dark:border-gray-700
+    }
+    .nav-link {
+        @apply block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent
+
+    }
+    .page-title {
+        @apply mb-4 text-3xl sm:text-4xl tracking-tight text-slate-900 font-extrabold dark:text-slate-200
+    }
 }
 
-ul.posts li {
-    list-style: none;
-}
-
-div.highlight code {
-    
-    font-size: 1.3em;
-}
-
-.highlighter-rouge  code * {
-    white-space: nowrap;
-}
-
-.highlighter-rouge pre {
-    overflow-x: auto;
-}
-
-.highlighter-rouge pre code {
-    white-space: pre;
-}

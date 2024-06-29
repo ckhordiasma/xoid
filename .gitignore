@@ -5,3 +5,11 @@ vendor/
 bundle
 ckhordiasma.github.io.geany
 drafts/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+node_modules/

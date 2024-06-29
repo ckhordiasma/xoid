@@ -1,0 +1,35 @@
+---
+layout: default
+title: Projects
+---
+<main class="max-w-[52rem] mx-auto px-4 pb-28 sm:px-6 md:px-8 xl:px-12 lg:max-w-full">
+    <header class="py-16 sm:text-center justify-center">
+        <h1 class="page-title">
+            {{ page.title }} </h1>
+    </header>
+    <div class="md:columns-2 gap-16 justify-evenly">
+        {% for post in site.projects %}
+        {% if post.layout %}
+        <!-- div class relative needed to make the span link thing work-->
+        <div class="break-inside-avoid bg-slate-50 dark:bg-zinc-900 border dark:border-gray-900 shadow-lg p-4 mb-16 relative hover:bg-slate-100 hover:shadow-xl dark:hover:bg-zinc-900/50">
+            <div class="relative">
+                <h3 class="text-base font-semibold tracking-tight text-slate-900 dark:text-slate-200 pt-8 lg:pt-0">
+                    {{ post.title }} </h3>
+                <div class="mt-2 mb-4 prose prose-zinc dark:prose-invert prose-a:relative prose-a:z-10  line-clamp-4">
+                    <p> {{ post.excerpt }} </p>
+                </div>
+            </div>
+            <a class="flex items-center text-sm text-sky-500 font-medium" href="{{ post.url }}">
+                <span class="absolute -inset-y-2.5 -inset-x-4 "></span>
+                <span class="relative">Read more<span class="sr-only">, <!-- --> {{ post.title }} </span></span>
+                <svg class="relative mt-px overflow-visible ml-2.5 text-sky-300 dark:text-sky-700" width="3" height="6"
+                    viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M0 0L3 3L0 6"></path>
+                </svg>
+            </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</main>

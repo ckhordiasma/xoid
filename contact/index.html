@@ -1,90 +1,73 @@
 ---
 layout: default
-title: xoid 
+title: contact
 ---
 <script src="https://www.google.com/recaptcha/api.js?render=6Ldmqr8UAAAAAJpk9nuaE-XrXjRGZuZR6dekZokO"></script>
 
 <script>
 
-function sendEmail(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if(this.readyState == 4 && this.status == 200){
-            console.log("request success");
-            console.log(this.responseText);
-            var resp = this.responseText;
-            var statusTag = document.getElementById('contact-response'); 
-            if(! resp.match(/email success/)){
-                statusTag.innerHTML = 'Error ' + resp;
-            }else{
-                var submitBtn = document.getElementById("contact-submit");
-                submitBtn.disabled = true;
-                submitBtn.value = "Email Sent!"
+    function sendEmail() {
+        const submitBtn = document.getElementById("contact-submit");
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "Submitting...";
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("request success");
+                console.log(this.responseText);
+                var resp = this.responseText;
+                var statusTag = document.getElementById('contact-response');
+                if (!resp.match(/email success/)) {
+                    statusTag.innerHTML = 'Error ' + resp;
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit"
+                } else {
+                    submitBtn.innerHTML = "Email Sent!"
+                    submitBtn.className += " bg-lime-700 dark:bg-lime-950"
+                }
             }
         }
-    }
 
-    grecaptcha.ready(function() {
-        grecaptcha.execute('6Ldmqr8UAAAAAJpk9nuaE-XrXjRGZuZR6dekZokO', {action: 'homepage'}).then(
-            function(token) {
-                document.getElementById('g-recaptcha-response').value = token;
-                xhttp.open("POST", "https://go5hoxgqig.execute-api.us-east-1.amazonaws.com/xoid-contact", true);
-                xhttp.setRequestHeader("Content-type", "application/json");
-                var postdata = JSON.stringify(packFormData('contact-form'));
-                xhttp.send(postdata);
-            });
-    });
-}
-function packFormData(formID){
-    var form = document.forms[formID];
-    var possibleInputs = form.elements;
-    var data = {}; 
-    for (el of possibleInputs){
-        if((el.tagName == 'INPUT' && el.type != 'submit') || el.tagName == 'TEXTAREA'){
-            data[el.name] = el.value;
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6Ldmqr8UAAAAAJpk9nuaE-XrXjRGZuZR6dekZokO', { action: 'homepage' }).then(
+                function (token) {
+                    document.getElementById('g-recaptcha-response').value = token;
+                    xhttp.open("POST", "https://go5hoxgqig.execute-api.us-east-1.amazonaws.com/xoid-contact", true);
+                    xhttp.setRequestHeader("Content-type", "application/json");
+                    var postdata = JSON.stringify(packFormData('contact-form'));
+                    xhttp.send(postdata);
+                });
+        });
+    }
+    function packFormData(formID) {
+        var form = document.forms[formID];
+        var possibleInputs = form.elements;
+        var data = {};
+        for (el of possibleInputs) {
+            if ((el.tagName == 'INPUT' && el.type != 'submit') || el.tagName == 'TEXTAREA') {
+                data[el.name] = el.value;
+            }
         }
+        console.log(data);
+        return data;
     }
-    console.log(data);
-    return data;
-}
 </script>
-<style type="text/css">
-#contact-form>input[type=text],#contact-form>input[type=email],#contact-form>textarea{
-    width:100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-#contact-form>input[type=submit] {
-  width: 100%;
-  background-color: #4e4f54;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#contact-form>input[type=submit]:hover, #contact-form>input[type=submit]:disabled{
-  background-color: #878992;
-}
-#form-container {
-    width:50%;
-}
-</style>
-<div class="blurb">
-	<h1>Contact</h1>
+<div class="mx-auto prose prose-zinc dark:prose-invert grow">
+    <h1>Contact Me</h1>
     <div id="form-container">
         <form id="contact-form" method="post" action="javascript: sendEmail()">
-        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
-        <input type="email" id="from" name="from" placeholder="Your email address" size="30" />
-        <textarea name="body" id="body" rows="8" cols="39" placeholder='your message'></textarea> 
-        <input id="contact-submit" type="submit" name="submit" value="contact" />
-        <span id="contact-response"> </span>
+            <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
+            <label class="block my-4">
+                <span>Your Email</span>
+                <input type="email" class="mt-1 block w-full dark:bg-zinc-900" id="from" name="from" placeholder="">
+            </label>
+            <label class="block my-4">
+                <span>Message</span>
+                <textarea class="mt-1 block w-full dark:bg-zinc-900" rows="8" name="body" id="body" ></textarea>
+              </label>
+            <button id="contact-submit" class="my-4 border rounded-lg px-4 py-2 bg-blue-900 text-gray-200" type="submit" name="submit" >Submit</button>
+            <span id="contact-response"> </span>
         </form>
     </div>
-</div><!-- /.blurb -->
+</div>
