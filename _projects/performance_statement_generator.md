@@ -10,11 +10,11 @@ tags:
 - Web Scraping
 ---
 
-[put image here]
+![image of ui](/media/bullet-synth/ui.png)
 
-[project page](https://github.com/AF-VCD/bullet-synth/)
+project page: <https://github.com/AF-VCD/bullet-synth>
 
-[demo page](https://af-vcd.github.io/bullet-synth/)
+demo page: <https://af-vcd.github.io/bullet-synth>
 
 The Air Force has specific, documented processes for submitting performance reports, and after many years of people following these processes, a unique "style" of writing performance bullet statements emerged. I was discussing this phenomenon one day with my teammates, and somebody brought up that maybe if we supplied enough examples, we could train a machine learning model to capture the essence of Air Force bullet statement writing. That was the genesis of this project.
 

@@ -14,6 +14,13 @@ tags:
 - AWS Lambda
 ---
 
+
+![image of ui](/media/pdf-bullets/ui.png)
+
+project page: <https://github.com/AF-VCD/pdf-bullets>
+
+demo page: <https://af-vcd.github.io/pdf-bullets>
+
 The Air Force has specific, documented processes for submitting performance reports and award nominations using standardized PDF forms. Within this process, several “unspoken rules” naturally emerged on how to craft sentences, or “bullet points,” on these forms, which usually involved:
 
 - Making the text visually appealing by leaving minimal space at the end of lines
