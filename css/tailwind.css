@@ -918,6 +918,42 @@ select {
   display: none;
 }
 
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-auto {
+  aspect-ratio: auto;
+}
+
+.aspect-\[85\/400\] {
+  aspect-ratio: 85/400;
+}
+
+.aspect-\[9\/40\] {
+  aspect-ratio: 9/40;
+}
+
+.aspect-\[9\/35\] {
+  aspect-ratio: 9/35;
+}
+
+.aspect-\[9\/34\] {
+  aspect-ratio: 9/34;
+}
+
+.aspect-\[9\/32\] {
+  aspect-ratio: 9/32;
+}
+
+.aspect-\[9\/30\] {
+  aspect-ratio: 9/30;
+}
+
+.aspect-\[9\/36\] {
+  aspect-ratio: 9/36;
+}
+
 .h-10 {
   height: 2.5rem;
 }
@@ -932,6 +968,39 @@ select {
 
 .h-\[calc\(0\.5rem\+1px\)\] {
   height: calc(0.5rem + 1px);
+}
+
+.h-lvh {
+  height: 100lvh;
+}
+
+.h-max {
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.h-\[33in\] {
+  height: 33in;
+}
+
+.h-\[44in\] {
+  height: 44in;
+}
+
+.h-\[200rem\] {
+  height: 200rem;
+}
+
+.h-\[100rem\] {
+  height: 100rem;
+}
+
+.h-\[150rem\] {
+  height: 150rem;
+}
+
+.h-\[125rem\] {
+  height: 125rem;
 }
 
 .w-10 {
@@ -2459,6 +2528,10 @@ select {
     display: block;
   }
 
+  .sm\:h-\[33in\] {
+    height: 33in;
+  }
+
   .sm\:max-w-full {
     max-width: 100%;
   }
@@ -2510,6 +2583,30 @@ select {
 
   .md\:hidden {
     display: none;
+  }
+
+  .md\:aspect-\[9\/32\] {
+    aspect-ratio: 9/32;
+  }
+
+  .md\:aspect-\[9\/36\] {
+    aspect-ratio: 9/36;
+  }
+
+  .md\:h-\[44in\] {
+    height: 44in;
+  }
+
+  .md\:h-\[40in\] {
+    height: 40in;
+  }
+
+  .md\:h-\[35in\] {
+    height: 35in;
+  }
+
+  .md\:h-\[37in\] {
+    height: 37in;
   }
 
   .md\:w-auto {
