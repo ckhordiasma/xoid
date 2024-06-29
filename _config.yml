@@ -1,6 +1,5 @@
 name: Christopher Kodama's Website
 markdown: kramdown
-highlighter: rouge
 plugins:
   - jekyll-postcss-v2
 postcss:
@@ -9,4 +8,10 @@ collections:
   projects:
     output: true
     order:
+      - dialogue_summarizer.md
+      - web_product_scraper.md
       - pdf_bullets.md
+      - performance_statement_generator.md
+      - teachable_text_machine.md
+      - resume_build_pipeline.md
+      - home_lab.md
