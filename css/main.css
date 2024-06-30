@@ -20,5 +20,8 @@
     .footer-item {
         @apply px-4 py-2 md:px-0
     }
+    .project-excerpt > p img {
+        @apply my-0
+    }
 }
 

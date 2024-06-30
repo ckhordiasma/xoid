@@ -831,10 +831,6 @@ select {
   margin-bottom: 2rem;
 }
 
-.mb-16 {
-  margin-bottom: 4rem;
-}
-
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -982,11 +978,6 @@ select {
   flex-grow: 1;
 }
 
-.break-inside-avoid {
-  -moz-column-break-inside: avoid;
-       break-inside: avoid;
-}
-
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -1021,10 +1012,6 @@ select {
 
 .justify-evenly {
   justify-content: space-evenly;
-}
-
-.gap-16 {
-  gap: 4rem;
 }
 
 .gap-6 {
@@ -2307,6 +2294,11 @@ select {
   }
 }
 
+.project-excerpt > p img {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 @media (prefers-color-scheme: dark) {
   .dark\:prose-invert {
     --tw-prose-body: var(--tw-prose-invert-body);
@@ -2492,6 +2484,22 @@ select {
     bottom: -1rem;
   }
 
+  .md\:float-right {
+    float: right;
+  }
+
+  .md\:float-left {
+    float: left;
+  }
+
+  .md\:clear-left {
+    clear: left;
+  }
+
+  .md\:clear-right {
+    clear: right;
+  }
+
   .md\:ml-\[calc\(3\.5rem\+1px\)\] {
     margin-left: calc(3.5rem + 1px);
   }
@@ -2516,6 +2524,10 @@ select {
     display: none;
   }
 
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
   .md\:w-auto {
     width: auto;
   }
@@ -2526,11 +2538,6 @@ select {
 
   .md\:max-w-screen-xl {
     max-width: 1280px;
-  }
-
-  .md\:columns-2 {
-    -moz-columns: 2;
-         columns: 2;
   }
 
   .md\:grid-cols-2 {
@@ -2560,12 +2567,20 @@ select {
     padding-left: 2.5rem;
   }
 
+  .md\:pl-3 {
+    padding-left: 0.75rem;
+  }
+
   .md\:pl-4 {
     padding-left: 1rem;
   }
 
   .md\:pl-8 {
     padding-left: 2rem;
+  }
+
+  .md\:pr-3 {
+    padding-right: 0.75rem;
   }
 
   .md\:text-left {
@@ -2606,6 +2621,10 @@ select {
 
   .lg\:max-w-full {
     max-width: 100%;
+  }
+
+  .lg\:pl-8 {
+    padding-left: 2rem;
   }
 
   .lg\:pt-0 {
