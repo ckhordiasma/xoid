@@ -48,6 +48,16 @@ A pool is kinda like a zpool, it's a logical storage pool that is redundant and 
 
 Just to test it out, I migrated my idle kubernetes clusters to the ceph pool, and then tried migrating my nodes around between proxmox nodes. Migrations were nice and fast even on my gigabit connection because only the VM state was being migrated. 
 
+## More troubleshooting
+
+I cancelled a migration from local-lvm to my ceph pool, and that caused an error with ceph that I had to google to resolve. The error was a generic
+
+```
+rbd error: rbd: listing images failed: (2) No such file or directory (500)
+```
+
+I was able to get a much better message by running `rbd ls -l cesspool` on any of my proxmox nodes, that told me which device had an issue. Then I ran `rbd rm disk-name-here -p cesspool` to delete that disk (which I did not need).
+
 ## TODO
 
 I still have a lot of things left to do with this ceph cluster. Here are some thoughts
