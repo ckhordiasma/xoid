@@ -111,4 +111,63 @@ Now that I know I can sucessfully provision a vm (including capability for furth
 - configurable NICs
 - configurable ip addresses
 
-There are other nice-to-haves but these are the important ones for the vyos router to function as an actual router. 
+There are other nice-to-haves but these are the important ones for the vyos router to function as an actual router. This took a couple of hours but was overall straightforward. For the NIC and IP address configuration I had to use dynamic blocks to be able to define multiple. For example, the ip configuration:
+
+```
+ dynamic "ip_config" {
+      for_each = var.networking
+      content {
+          ipv4 {
+            address = ip_config.value["ipv4"]
+          }
+      }
+    }
+```
+
+and the nic configuration:
+
+```
+dynamic "network_device" {
+    for_each = var.networking
+    content {
+        bridge = network_device.value["bridge"]
+        vlan_id = network_device.value["vlan"]
+    }
+  }
+```
+
+To make defining network config less cumbersome, I made a `networking` variable with sane defaults:
+
+```
+variable "networking" {
+  type = list(object({
+    bridge = optional(string, "vmbr0")
+    vlan = optional(number, null)
+    ipv4 = optional(string, "dhcp")
+  }))
+  default = [{}]
+  description = "a list of all your networking devices. defaults to a single nic attached to vmbr0, no vlan, and with dhcp."
+}
+```
+
+with this, if you just want a VM on vmbr0 with dhcp, you can specify `[{}]` for the networking variable and get a valid output.
+
+I tested this all with my vyos image from before, and it seems to work!! 
+
+## What next?
+
+I think I am at a good stopping point here in terms of terraform development. I wanted to bootstrap vyos just enough to be able to use something else like ansible to configure the rest. This overall effort was great because it will not only help me move fast as I mess around with vyos, but I was also able to improve my existing terraform vm module as well. A lot of those changes can also carry over into my lxc module, and that is something I will be doing once I need to spin up more advanced LXCs.
+
+For VyOS, my next steps are to 
+
+- learn how to use vyos for basic routing and firewalling, and also more advanced bgp use cases
+- build an ansible role for config management of vyos routers
+- deploy a router to serve as the router above a kubernetes cluster in its own subnet
+
+For terraform:
+
+- build terraform module to create kubernetes nodes (i think it's about time I learned talos)
+- update my lxc module to match the features of my new vm module
+
+
+
