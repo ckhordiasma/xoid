@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Kubernetes course notes"
+tags: kubernetes bash
 ---
 
 This is a collection of miscellaneous notes I took while taking a Udemy course on Kubernetes.

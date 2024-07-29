@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Notes on Learning Rust"
+tags: rust
 ---
 
 This is a collection of notes that I took while I was learning Rust from the rust book website.

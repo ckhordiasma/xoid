@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Configuring Cisco SG-300 Switch"
+tags: cisco networking ssh
 ---
 
 

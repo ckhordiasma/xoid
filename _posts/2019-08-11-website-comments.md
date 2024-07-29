@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Website comments"
-
+tags: github sed
 ---
 
 Today I am working on adding functionality on my website for users to add comments. [some people](https://github.com/apps/utterances) have [already done this](https://artsy.github.io/blog/2017/07/15/Comments-are-on/), but I decided to not go with their way and just use the bare-bones github issues functionality without much interfacing. 
