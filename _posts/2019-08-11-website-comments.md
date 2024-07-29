@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Website comments"
-date: 2019-08-11
 
 ---
 
@@ -15,7 +14,6 @@ The first thing I just did was add a piece of metadata to each existing post. I 
 ---
 layout: post
 title "Website comments"
-date: 2019-08-11
 ---
 ```
 

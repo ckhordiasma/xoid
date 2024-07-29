@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Encrypting and Decrypting Email"
-date: 2019-07-22
 
 ---
 

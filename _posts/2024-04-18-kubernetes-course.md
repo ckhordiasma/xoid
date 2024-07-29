@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Kubernetes course notes"
-date: 2024-04-18
 ---
 
 This is a collection of miscellaneous notes I took while taking a Udemy course on Kubernetes.

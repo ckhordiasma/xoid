@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Installing vyos as a Proxmox VM using Terraform"
-date: 2024-07-25
 tags:
 - proxmox
 - terraform

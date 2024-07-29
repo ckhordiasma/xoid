@@ -1,6 +1,5 @@
 ---
 layout: post
-date: 2023-11-22
 title: "Logging on Proxmox"
 ---
 

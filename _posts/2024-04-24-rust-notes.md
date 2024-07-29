@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Notes on Learning Rust"
-date: 2024-04-24
 ---
 
 This is a collection of notes that I took while I was learning Rust from the rust book website.

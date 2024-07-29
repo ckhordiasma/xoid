@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Remote Desktop Certificates"
-date: 2019-07-28
 comment_id: 8
 
 ---

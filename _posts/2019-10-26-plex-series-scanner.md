@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Plex Series Scanner Adjustments"
-date: 2019-10-26
 
 ---
 

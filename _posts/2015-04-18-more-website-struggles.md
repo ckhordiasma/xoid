@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Site Management"
-date: 2015-04-19
 
 ---
 I'm trying to make jekyll on github pages work nicely with my website host, and it's rather confusing.  I thought I had it all figured out yesterday, but I decided to do something else so I've been working on that for the past few hours. I want the jekyll site to appear at www.xoid.us, but I want all my old stuff to appear somewhere, like old.xoid.us. 

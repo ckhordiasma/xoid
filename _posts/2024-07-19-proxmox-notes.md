@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Proxmox Setup and Config Notes"
-date: 2024-07-19
 ---
 
 Over the past couple of years, I have been incrementally repurposing old hardware, mostly laptops, by installing proxmox on them and then running VMs, LXCs, and containers on there. I am writing this post to consolidate some notes I had about proxmox setup. 

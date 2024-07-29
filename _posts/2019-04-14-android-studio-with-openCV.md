@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Getting OpenCV to work on Android"
-date: 2019-04-14
 
 ---
 

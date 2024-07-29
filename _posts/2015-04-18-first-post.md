@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Site Launch"
-date: 2015-04-18
 
 ---
 
