@@ -13,8 +13,6 @@ This is a collection of miscellaneous notes I took while taking a Udemy course o
 3. run a busybox pod/container and connect to it
 4. from the busybox shell, telnet the endpoint:port and run GET /
 
-
-
 # scaling pods
 
 to scale pods, you can use a replication controller as such:
@@ -128,3 +126,53 @@ StatefulSets end in -0, -1, -2 instead of a random string. It's useful for when 
 # metrics server for autoscaling
 
 was able to `kubectl apply` from the metrics server github repo. once that was installed and the relevant container in the `kube-system` namespace started, i could run commands such as: `kubectl top pods` and `kubectl top nodes`
+
+# Networking 
+
+### containers within the same pod
+
+uses localhost and port number
+
+### pod to k8s services
+
+uses nodeport, dns, cluster IP
+
+### external to k8s services
+
+loadbalancer, nodeport
+
+### pod to pod communications
+
+by ip address needs to be fully routable regardless of node
+
+varies based on networking setup
+
+## networking on AWS
+
+kops kubenet networking - every pod gets an ip address that is routable in the AWS VPC of the node. Each node gets a /24, and those subnets are added to the VPC route table
+
+AWS hard limit of 50 entries in route table = max of 50 nodes in aws cluster with kops without support ticket from AWS?
+
+similar on other clouds like GCE, Azure
+
+## container network interfaces
+
+libraries / plugins for network interfaces within containers
+
+calico and weave (standalone or with CNI)
+
+calico provides networking security policies for communications
+
+## overlay network
+
+flannel - encapsulates pod comms when it leaves a node (kind of like NAT?) and decapsulates the comms when entering a node.
+
+# Node maintenance
+
+### decommissioning
+
+```
+kubectl draine nodename --grace-period=600
+```
+
+if the node has pods that are just run bare (not part of deployment, replication (replica/stateful set), then need to force with `--force` flag
