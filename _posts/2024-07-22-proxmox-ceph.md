@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Setting up Ceph on Proxmox"
-date: 2024-07-22
+tags: proxmox ceph kubernetes
 ---
 
 This all started because I wanted a way to be able to create persistent volume claims on locally hosted kubernetes cluster. I originally had longhorn installed on my cluster for this, but I wanted to try something else. I looked into a project that implemented a proxmox CSI for kubernetes, but it seemed to have some limitations on migration and seemed intimidating to install. Ceph on the other hand, had a nice blue button on the proxmox UI that I could click to try, and it seemed easy enough to at least dip my toes in the water. I didn't have anything important running on my cluster at the moment (which is why I was able to just delete longhorn without issue), so it was a good time to experiment.

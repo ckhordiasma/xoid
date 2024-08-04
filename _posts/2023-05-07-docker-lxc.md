@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Running Docker in LXC
-date: 2023-05-07
+tags: docker proxmox linux
 ---
 
 these are things that I had to do to get docker working the way i want on an lxc container.

@@ -1,7 +1,7 @@
 ---
 layout: post
-date: 2023-11-22
 title: "Logging on Proxmox"
+tags: proxmox linux logcheck
 ---
 
 I've recently ran into some situations where things on my proxmox server were failing, and I had no idea about it until later because I didn't check my proxmox frequently enough. To help resolve this, I set up a few forms of email logging on my proxmox server.

@@ -1,19 +1,14 @@
 ---
 layout: post
 title: "Installing vyos as a Proxmox VM using Terraform"
-date: 2024-07-25
-tags:
-- proxmox
-- terraform
-- vyos
-- ansible
+tags: proxmox terraform vyos ansible
 ---
 
 In order to get more practice with advanced networking topics, I wanted to have ways for me to quickly spin up router VMs that I can test with. After doing some googling I decided on vyos as my router of choice for now. For the "quick" part I planned on using Terraform with Proxmox (the hypervisor I use at home). 
 
 ## Terraform on Proxmox
 
-I had some prior work with creating basic VMs and LXCs with Proxmox, but it was kind of in a disorganized state. I cleaned it up and make a public git repo with some terraform modules. This is located [here](https://github.com/kodama-labs/tf-proxmox). I would need to make some modifications to the VM module I made to make it work for routers in general. For example, my VM module assumes the VM only needs one NIC.  Overall though, it is a good starting point.
+I had some prior work with creating basic VMs and LXCs with Proxmox, but it was kind of in a disorganized state. I cleaned it up and make a public git repo with some terraform modules. This is located here: <https://github.com/kodama-labs/tf-proxmox>. I needed to make some modifications to the VM module I made to make it work for routers in general. For example, my VM module assumes the VM only needs one NIC. [here](https://github.com/kodama-labs/tf-proxmox/tree/c3f34a5b254103c06dee4ff4db77d0eae3f7a371) is a snapshot of my tf-proxmox repo from before I started this project and made the subsequent improvments.
 
 ## Cloud-init and vyos
 

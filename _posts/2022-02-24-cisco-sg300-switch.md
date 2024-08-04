@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Configuring Cisco SG-300 Switch"
-date: 2022-02-24
+tags: cisco networking ssh
 ---
 
 
