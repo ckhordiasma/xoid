@@ -80,3 +80,87 @@ I didn't do this, but I thought it was worth mentioning. If I was dead set on im
 # Conclusion
 
 I ended up going the GNOME settings route, and have my computer hibernate after 10 minutes: 5 minutes before being considered idle, at which point the screen will shut off. 5 minutes after that, the computer will hibernate. I think this will give me some nice big power savings when i forget to charge my laptop overnight!
+
+## Epilogue
+
+Well, it turns out that entrusting gnome to properly hibernate was a bad assumption! gnome would sometimes silently fail to hibernate my computer, and I would see the same error messages that I was getting before in `journalctl -b`. So I changed up my settings to test alternatives:
+
+```
+# set to a short value for testing purposes
+gsettings set org.gnome.desktop.session idle-delay 10
+
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 0
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+```
+
+My `/etc/systemd/logind.conf.d/hibernate.conf` file:
+
+```
+[Login]
+HandleLidSwitch=suspend-then-hibernate
+LidSwitchIgnoreInhibited=yes
+# how many seconds to wait after lid close to initiate HandleLidSwitch event
+#  kept it short for testing purposes
+HoldoffTimeoutSec=10s
+
+IdleAction=suspend-then-hibernate
+# how many seconds to wait after idle to initiate IdleAction
+#  kept short for testing purposes
+IdleActionSec=5s
+```
+
+and `/etc/systemd/sleep.conf.d/hibernate.conf`:
+
+```
+[Sleep]
+AllowHibernation=yes
+AllowSuspendThenHibernate=yes
+HibernateMode=shutdown
+HibernateDelaySec=300s
+```
+
+With these settings, GNOME will go idle after ten seconds, and then after 5 seconds, systemd will initiate suspend-then-hibernate. After 5 minutes of suspend, the system will go into hibernation. I tested it a few times and it worked! Also, the settings at the top of the logind script say to put the system in suspend-then-hibernate after the lid has been closed for 10 seconds.
+
+After doing all this testing, I set everything to more normal values:
+
+
+```
+gsettings set org.gnome.desktop.session idle-delay 300
+
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 0
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+```
+
+`/etc/systemd/logind.conf.d/hibernate.conf`:
+
+```
+[Login]
+HandleLidSwitch=suspend-then-hibernate
+LidSwitchIgnoreInhibited=yes
+# how many seconds to wait after lid close to initiate HandleLidSwitch event
+HoldoffTimeoutSec=20s
+
+IdleAction=suspend-then-hibernate
+# how many seconds to wait after idle to initiate IdleAction
+IdleActionSec=30s
+```
+
+and `/etc/systemd/sleep.conf.d/hibernate.conf`:
+
+```
+[Sleep]
+AllowHibernation=yes
+AllowSuspendThenHibernate=yes
+HibernateMode=shutdown
+HibernateDelaySec=300s
+```
+
+## Conclusion 2
+
+So now I have a new power configuration that should save me battery life! I am still not sure if this is going to work the best. For example, if I am running a long script or download, will my system go idle during it? That might cause me headaches down the road. As a workaround I could set 
+
+```
+gsettings set org.gnome.desktop.session idle-delay 999999
+```
+
+to some large value (or maybe 0 disables it?) and prevent GNOME from idling. If gnome never goes idle, then systemd should not hibernate my system. I guess I will see what happens!
