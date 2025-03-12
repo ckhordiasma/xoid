@@ -12,8 +12,7 @@ He gave me a book called "Head First Java," and it had just enough silly picture
 
 Both my parents are engineers who served in the U.S. Air Force. I followed in their footsteps, getting the Air Force to bankroll my college undergraduate degree--and my master's degree as well, later on--in exchange for time served in the military. 
 
-College, at the Rose-Hulman Institute of Technology, is where I started getting comfortable with a few more languages, like C, Python, and more Java. I also learned things like Matlab and Verilog too.  
-Since I was an electrical engineer and not a computer science major, most of my coding projects were short and were means to an end for other things, like programming a microcontroller, automating measurements from lab equipment, or writing short scripts to parse data. 
+College is where I started getting comfortable with a few more languages, like C, Python, and more Java. I also learned things like Matlab and Verilog too. Since I was an electrical engineer and not a computer science major, most of my coding projects were short and were means to an end for other things, like programming a microcontroller, automating measurements from lab equipment, or writing short scripts to parse data. 
 
 After that I went immediately to the Air Force Institute of Technology to get my Master's in Electrical Engineering, focusing on microelectronics and cleanroom fabrication. I had a great time doing things like automating CAD file generation for micrometer-scale patterns, and learning the ins and outs of LaTeX.
 
@@ -31,8 +30,10 @@ This assignment was also when I started development work on the "Bullet Shaping 
 
 ### Air Force IT Infrastructure
 
-My third and current assignment is at the sustainment office for Air Force network. This job has taught me so many things about computer networking that had previously just been black box mysteries for me, like IP addresses, MAC Addresses, DNS resolution, DHCP, IP routing, TCP/UDP, and HTTP. 
+My third and final assignment in the Air Force was at the sustainment office for Air Force enterprise network. This job has taught me so many things about computer networking that had previously just been black box mysteries for me, like IP addresses, MAC Addresses, DNS resolution, DHCP, IP routing, TCP/UDP, and HTTP. 
 
 I also started off essentially learning to be a Linux sysadmin, putting my past experience with Bash to good use. Then I gradually I started learning how to use tools like Ansible, Packer, and Terraform.. and before I knew it I found myself to be a DevOps engineer, crafting up CI/CD pipelines to build up infrastructure for me.
 
+### Red Hat Openshift AI
 
+After leaving the military, I started working for Red Hat on their Openshift AI platform as a Dev/TestOps engineer. My responsibilities now involve maintenance and improvement of the CI/CD pipelines that build the Openshift AI product. The build platform used here is called Konflux, which itself uses a CI/CD framework called Tekton Pipelines.  
